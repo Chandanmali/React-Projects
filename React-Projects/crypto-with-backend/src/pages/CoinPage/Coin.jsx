@@ -1,0 +1,65 @@
+import React, { useContext, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import Loadder from '../../../../crypto-tracker/src/components/Loadder';
+import { CoinContext } from '../../context/CoinContext';
+
+function Coin() {
+
+    const { coinId } = useParams();
+    const [coinData, setCoinData] = useState()
+    const {currency} = useContext(CoinContext)
+
+    const fetchCoinDataHandler = async () => {
+        const fetchApi = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`)
+        const json = await fetchApi.json()
+        console.log(json)
+        setCoinData(json)
+    }
+
+    useEffect(() => {
+        fetchCoinDataHandler()
+    }, [])
+
+    return (
+        <div>
+            <div>
+                {
+                    coinData ? <div className='mt-20'>
+                        <img className='w-32 m-auto' src={coinData.image.large} alt="" />
+                        <p className='text-5xl font-semibold text-center mt-7'>{coinData.name} ({coinData.symbol.toUpperCase()})</p>
+                    </div> : <Loadder />
+                }
+
+            </div>
+
+            <div className='max-w-[850px] m-auto mt-20'>
+                <ul className='flex justify-between border-b border-gray-500 py-2'>
+                    <li>Crypto Market Rank</li>
+                    <li>{coinData?.market_cap_rank}</li>
+                </ul>
+                
+                <ul className='flex justify-between border-b border-gray-500 py-2'>
+                    <li>Current Price</li>
+                    <li>{currency.symbol} {coinData?.market_data?.current_price[currency.name].toLocaleString()}</li>
+                </ul>
+                
+                <ul className='flex justify-between border-b border-gray-500 py-2'>
+                    <li>Market cap</li>
+                    <li>{currency.symbol} {coinData?.market_data?.market_cap[currency.name].toLocaleString()}</li>
+                </ul>
+                
+                <ul className='flex justify-between border-b border-gray-500 py-2'>
+                    <li>24 Hour high</li>
+                    <li>{currency.symbol} {coinData?.market_data?.high_24h[currency.name].toLocaleString()}</li>
+                </ul>
+                
+                <ul className='flex justify-between border-b border-gray-500 py-2'>
+                    <li>Crypto Market Rank</li>
+                    <li>{currency.symbol} {coinData?.market_data?.low_24h[currency.name].toLocaleString()}</li>
+                </ul>
+            </div>
+        </div>
+    )
+}
+
+export default Coin
