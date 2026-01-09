@@ -1,15 +1,17 @@
+require("dotenv").config();
 const express = require("express")
 const mongoose = require("mongoose")
 const { userModel } = require("./Model/model.js")
 const app = express()
 const PORT = 3000
 const jwt = require("jsonwebtoken")
-const JWT_SECRETE = "chandanmali@2111@123"
+const JWT_SECRETE = process.env.JWT_SECRETE
 const cors = require("cors")
+const MONGODB_URL = process.env.MONGODB_URL
 
 app.use(cors())
 app.use(express.json())  //middleware
-mongoose.connect("mongodb+srv://chandanmali21117_db_user:chandan21117@cluster0.hzefken.mongodb.net/crypto-app").then(() => console.log("Mongodb conneted successfully")).catch(() => console.log("mongoDB connection faild"))
+mongoose.connect(MONGODB_URL).then(() => console.log("Mongodb conneted successfully")).catch(() => console.log("mongoDB connection faild"))
 
 app.post('/signup', async(req, res) => {
     const name = req.body.name
