@@ -1,11 +1,12 @@
 import React, { useContext } from 'react'
 import Logo from "../assets/logo.png"
 import { CoinContext } from '../context/CoinContext'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Navbar() {
 
     const { currency, setCurrency } = useContext(CoinContext)
+    const navigate = useNavigate()
 
     const currencyHandler = (e) => {
         switch (e.target.value) {
@@ -54,9 +55,9 @@ function Navbar() {
 
                     <div className='flex gap-5'>
 
-                        <button className='text-black bg-white px-4 py-2 rounded-full font-semibold text-sm cursor-pointer'>Sign Up</button>
+                        <button onClick={() => navigate('/signup')} className='text-black bg-white px-4 py-2 rounded-full font-semibold text-sm cursor-pointer'>Sign Up</button>
 
-                        <button className='text-black bg-white px-4 py-2 rounded-full font-semibold text-sm cursor-pointer'>Sign In</button>
+                        <button onClick={() => navigate("/login")} className='text-black bg-white px-4 py-2 rounded-full font-semibold text-sm cursor-pointer'>Login</button>
                     </div>
                 </div>
 

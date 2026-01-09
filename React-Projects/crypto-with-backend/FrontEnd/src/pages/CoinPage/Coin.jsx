@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Loadder from '../../../../crypto-tracker/src/components/Loadder';
 import { CoinContext } from '../../context/CoinContext';
+import Lodder from '../../components/Lodder'
 
 function Coin() {
 
@@ -27,7 +27,7 @@ function Coin() {
                     coinData ? <div className='mt-20'>
                         <img className='w-32 m-auto' src={coinData.image.large} alt="" />
                         <p className='text-5xl font-semibold text-center mt-7'>{coinData.name} ({coinData.symbol.toUpperCase()})</p>
-                    </div> : <Loadder />
+                    </div> : <Lodder />
                 }
 
             </div>

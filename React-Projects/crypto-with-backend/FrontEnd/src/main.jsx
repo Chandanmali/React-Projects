@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home/Home.jsx'
 import CoinContextProvider from './context/CoinContext.jsx'
 import Coin from './pages/CoinPage/Coin.jsx'
+import Signup from './components/Signup.jsx'
+import Login from './components/Login.jsx'
 
 const appRouter = createBrowserRouter([
   {
@@ -22,6 +24,16 @@ const appRouter = createBrowserRouter([
         element: <Coin />
       }
     ]
+  },
+
+  {
+    path: "/signup",
+    element: <Signup />
+  },
+  
+  {
+    path: "/login",
+    element: <Login />
   }
 ])
 
