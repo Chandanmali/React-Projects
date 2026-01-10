@@ -50,11 +50,11 @@ function Coin() {
 
             </div>
 
-            <div className='mt-15 max-w-212.5 m-auto h-85'>
+            <div className='mt-15 md:max-w-212.5 max-w-[350px] m-auto md:h-85 h-60'>
                 <LineChart coinHistory={coinHistory} />
             </div>
 
-            <div className='max-w-212.5 m-auto mt-20'>
+            <div className='md:max-w-212.5 max-w-[350px] m-auto mt-20 text-sm'>
                 <ul className='flex justify-between border-b border-gray-500 py-2'>
                     <li>Crypto Market Rank</li>
                     <li>{coinData?.market_cap_rank}</li>

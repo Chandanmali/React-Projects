@@ -62,7 +62,7 @@ function Home() {
 
             {/* Heading */}
             <div className="text-center mt-8 md:mt-14 font-bold text-4xl md:text-6xl">
-                <p className="flex flex-col">
+                <p className="flex flex-col md:leading-18 leading-14">
                     Largest <span>Crypto Marketplace</span>
                 </p>
             </div>
